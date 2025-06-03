@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phishing Email Simulator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f6fb;
+      padding: 2em;
+    }
+
+    h2 {
+      color: #003366;
+    }
+
+    form {
+      background: white;
+      padding: 1.5em;
+      border-radius: 8px;
+      max-width: 500px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.6em;
+      margin-top: 0.5em;
+      margin-bottom: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 0.6em 1.2em;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .error {
+      color: red;
+      margin-top: 1em;
+    }
+
+    .sender-info {
+      font-size: 0.9em;
+      margin-bottom: 1em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Send Internal Email</h2>
+
+  <form id="phishForm">
+    <div class="sender-info">
+      <strong>From:</strong> <span id="fromDisplay">[unknown]</span>
+    </div>
+
+    <label for="to">To:</label>
+    <input type="email" id="to" required placeholder="e.g. john.doe@defensecorp.com">
+
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" required value="Urgent: Required System Update">
+
+    <label for="body">Message:</label>
+    <textarea id="body" rows="6">
+As part of the transition to our new secure communications platform, all contractors must download and install the latest portal client dashboard.
+
+Please download the new installer here: https://portal.internal/update-setup.exe
+
+Failure to do so may impact your access to the reporting and contract portal.
+
+— IT Support
+    </textarea>
+
+    <button type="submit">Send Email</button>
+    <div id="error" class="error"></div>
+  </form>
+
+  <script>
+    const validRecipients = [
+      "john.doe@defensecorp.com",
+      "alice.carter@contractorhub.net",
+      "b.johnson@securebuilds.org"
+    ];
+
+    const senderEmail = localStorage.getItem("senderEmail");
+    document.getElementById("fromDisplay").textContent = senderEmail || "[unknown]";
+
+    document.getElementById("phishForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const to = document.getElementById("to").value.trim().toLowerCase();
+
+      if (!validRecipients.includes(to)) {
+        document.getElementById("error").textContent = "Error: recipient not in client contact list.";
+        return;
+      }
+
+      if (!senderEmail) {
+        document.getElementById("error").textContent = "Error: no sender identity. Please log in first.";
+        return;
+      }
+
+      window.location.href = "phishing-reply.html";
+    });
+  </script>
+
+</body>
+</html>
