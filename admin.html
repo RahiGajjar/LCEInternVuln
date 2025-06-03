@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <style>
+    body {
+      font-family: Courier New, monospace;
+      background-color: #1e1e1e;
+      color: #0f0;
+      padding: 2em;
+    }
+    .flag {
+      background-color: #111;
+      padding: 1em;
+      border: 1px dashed #0f0;
+      margin-top: 2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome, Administrator</h1>
+  <pre>
+  >> System Log Initialized...
+  >> Vulnerability Ingest Queue: OK
+  >> Report Parser: Active
+  </pre>
+
+ <div class="flag">
+  FLAG{weak_storage_exposed}
+</div>
+<p>System logs show a task exposing credentials every 5 minutes. Check `/etc/cron.d` or world-readable log files.</p>
+
+</body>
+</html>
