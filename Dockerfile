@@ -66,3 +66,8 @@ COPY vuln-login.html /var/www/html/vuln-login.html
 COPY admin.html /var/www/html/admin.html
 COPY users.js /var/www/html/users.js
 COPY client_dump.sql /var/www/html/backup/client_dump.sql
+COPY botnet_agent.py /srv/botnet_agent.py
+
+EXPOSE 5050
+
+CMD ["python3", "/srv/botnet_agent.py"]
