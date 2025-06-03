@@ -86,10 +86,20 @@
   <div class="container">
     <h2>Active Vulnerability Reports</h2>
 
-    <div class="report">
-      <h3>CVE-2025-1337 – SSH Weak Key</h3>
-      <p>Detected use of a weak 1024-bit SSH key on engineering systems. Possible MITM vector for root escalation.</p>
-    </div>
+<div class="report">
+  <div class="report">
+  <h3>CVE-2025-2819 – Suspicious Command Channel Detected</h3>
+  <p>
+    Routine traffic analysis flagged an unusual TCP listener on an engineering node.
+    The service broadcasts a custom banner resembling old telemetry daemons, but no authentication appears required.
+  </p>
+  <p>
+    Port scan revealed a custom service on an uncommon port. Service may accept structured input for remote interaction.
+  </p>
+  <p><strong>Hint:</strong> Start with basic reconnaissance. Response text may reveal intended usage.</p>
+</div>
+
+
 
     <div class="report">
       <h3>Insecure JavaScript Credential Store</h3>
